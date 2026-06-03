@@ -1,0 +1,1506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Premium luxury fashion brand offering elegant, feminine designs crafted with exceptional materials and timeless sophistication.">
+    <meta name="keywords" content="luxury fashion, designer wear, premium clothing, elegant dresses, handcrafted fashion">
+    <title>LUXE | Redefining Modern Luxury</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+       /* Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --blush-pink: #F7C8E0;
+    --rose-gold: #E8A0BF;
+    --soft-peach: #FFD6BA;
+    --pure-white: #FFFFFF;
+    --dark-ink: #1F1F1F;
+    --transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--pure-white);
+    color: var(--dark-ink);
+    overflow-x: hidden;
+    line-height: 1.6;
+    cursor: none;
+}
+
+/* Loading Screen */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--blush-pink), var(--soft-peach));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 1s ease;
+}
+
+.loader {
+    width: 60px;
+    height: 60px;
+    border: 3px solid var(--pure-white);
+    border-radius: 50%;
+    position: relative;
+    animation: spin 2s linear infinite;
+}
+
+.loader-inner {
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    width: 60px;
+    height: 60px;
+    border: 3px solid transparent;
+    border-top-color: var(--rose-gold);
+    border-radius: 50%;
+    animation: spin 1.5s linear infinite reverse;
+}
+
+.loading-text {
+    margin-top: 20px;
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--dark-ink);
+    letter-spacing: 5px;
+}
+
+/* Custom Cursor */
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--rose-gold);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease;
+    mix-blend-mode: difference;
+}
+
+.cursor-follower {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    background: rgba(232, 160, 191, 0.1);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9997;
+    transition: transform 0.3s ease;
+}
+
+.custom-cursor.hover {
+    transform: scale(1.5);
+    background: var(--rose-gold);
+}
+
+/* Scroll Progress */
+.scroll-progress-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: transparent;
+    z-index: 9999;
+}
+
+.scroll-progress {
+    height: 100%;
+    background: linear-gradient(90deg, var(--blush-pink), var(--rose-gold));
+    width: 0%;
+    transition: width 0.1s ease;
+}
+
+/* Particles */
+.particles-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.particle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: var(--rose-gold);
+    border-radius: 50%;
+    opacity: 0.3;
+    animation: float 20s infinite ease-in-out;
+}
+
+@keyframes float {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0.3; }
+    50% { transform: translateY(-100vh) rotate(180deg); opacity: 0.6; }
+    100% { transform: translateY(0) rotate(360deg); opacity: 0.3; }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Typography */
+h1, h2, h3, h4 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+h1 { font-size: 4rem; }
+h2 { font-size: 2.8rem; }
+h3 { font-size: 1.8rem; }
+
+.section-header {
+    text-align: center;
+    padding: 80px 20px 40px;
+}
+
+.section-header p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Glassmorphism */
+.glass-card {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 50px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 0.95rem;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--blush-pink), var(--rose-gold));
+    color: var(--dark-ink);
+    box-shadow: 0 10px 30px rgba(232, 160, 191, 0.3);
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: 0.5s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(232, 160, 191, 0.4);
+}
+
+.btn-primary:hover::before {
+    left: 100%;
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--dark-ink);
+    border: 2px solid var(--rose-gold);
+    margin-left: 15px;
+}
+
+.btn-secondary:hover {
+    background: var(--rose-gold);
+    transform: translateY(-3px);
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 25px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    transition: var(--transition);
+}
+
+.navbar.scrolled {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 15px 5%;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.nav-logo a {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--dark-ink);
+    text-decoration: none;
+    letter-spacing: 2px;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+}
+
+.nav-menu a {
+    color: var(--dark-ink);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    position: relative;
+    transition: var(--transition);
+}
+
+.nav-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--rose-gold);
+    transition: var(--transition);
+}
+
+.nav-menu a:hover {
+    color: var(--rose-gold);
+}
+
+.nav-menu a:hover::after {
+    width: 100%;
+}
+
+.nav-icons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.cart-icon {
+    position: relative;
+    color: var(--dark-ink);
+    text-decoration: none;
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: var(--rose-gold);
+    color: var(--pure-white);
+    font-size: 0.7rem;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: var(--dark-ink);
+    transition: var(--transition);
+    border-radius: 3px;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Hero Section */
+.hero {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--blush-pink), var(--soft-peach), var(--rose-gold));
+    z-index: -1;
+}
+
+.floating-shape {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    animation: floatShape 20s infinite ease-in-out;
+}
+
+.shape-1 {
+    width: 300px;
+    height: 300px;
+    top: 10%;
+    left: 5%;
+    animation-delay: 0s;
+}
+
+.shape-2 {
+    width: 200px;
+    height: 200px;
+    bottom: 15%;
+    right: 10%;
+    animation-delay: 2s;
+}
+
+.shape-3 {
+    width: 150px;
+    height: 150px;
+    top: 50%;
+    right: 20%;
+    animation-delay: 4s;
+}
+
+@keyframes floatShape {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-30px) scale(1.05); }
+}
+
+.hero-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+.hero-headline {
+    font-size: 5rem;
+    line-height: 1.1;
+    margin-bottom: 30px;
+    color: var(--dark-ink);
+}
+
+.hero-description {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 40px;
+    max-width: 500px;
+}
+
+.hero-buttons {
+    display: flex;
+}
+
+.model-image-container {
+    position: relative;
+    text-align: right;
+}
+
+.model-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 30px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+    animation: floatImage 10s infinite ease-in-out;
+}
+
+@keyframes floatImage {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(1deg); }
+}
+
+/* Featured Collection */
+.featured-collection {
+    padding: 100px 5%;
+    background: var(--pure-white);
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.product-card {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    background: var(--pure-white);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+    transition: var(--transition);
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(232, 160, 191, 0.25);
+}
+
+.product-image-container {
+    overflow: hidden;
+    aspect-ratio: 3/4;
+}
+
+.product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.05);
+}
+
+.product-info {
+    padding: 25px;
+    text-align: center;
+}
+
+.product-info h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+}
+
+.price {
+    color: var(--rose-gold);
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+/* Brand Story */
+.brand-story {
+    padding: 100px 5%;
+    background: linear-gradient(135deg, var(--pure-white), var(--blush-pink));
+}
+
+.brand-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    max-width: 1400px;
+    margin: 0 auto;
+    align-items: center;
+}
+
+.brand-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 30px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+}
+
+.brand-content h2 {
+    font-size: 3rem;
+    margin-bottom: 30px;
+}
+
+.brand-content p {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    color: #444;
+}
+
+.brand-stats {
+    display: flex;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--rose-gold);
+    display: block;
+}
+
+.stat-plus {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--rose-gold);
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #666;
+    display: block;
+    margin-top: 5px;
+}
+
+/* Lookbook */
+.lookbook {
+    padding: 100px 5%;
+    background: var(--pure-white);
+}
+
+.masonry-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.masonry-item {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    aspect-ratio: 4/5;
+}
+
+.masonry-item:nth-child(2),
+.masonry-item:nth-child(5) {
+    grid-row: span 2;
+}
+
+.masonry-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+}
+
+.masonry-item:hover img {
+    transform: scale(1.1);
+}
+
+.masonry-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, rgba(31, 31, 31, 0.7));
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 30px;
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.masonry-item:hover .masonry-overlay {
+    opacity: 1;
+}
+
+.masonry-overlay span {
+    color: var(--pure-white);
+    font-size: 1.2rem;
+    font-family: 'Playfair Display', serif;
+}
+
+/* Luxury Experience */
+.luxury-experience {
+    padding: 100px 5%;
+    background: linear-gradient(135deg, var(--blush-pink), var(--soft-peach));
+}
+
+.experience-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.experience-card {
+    padding: 50px 30px;
+    text-align: center;
+    transition: var(--transition);
+}
+
+.experience-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(232, 160, 191, 0.3);
+}
+
+.card-icon {
+    font-size: 3rem;
+    color: var(--rose-gold);
+    margin-bottom: 20px;
+}
+
+.experience-card h3 {
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.experience-card p {
+    color: #555;
+    font-size: 0.95rem;
+}
+
+/* Testimonials */
+.testimonials {
+    padding: 100px 5%;
+    background: var(--pure-white);
+}
+
+.testimonial-carousel {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.testimonial-track {
+    display: flex;
+}
+
+.testimonial-slide {
+    min-width: 100%;
+    padding: 20px;
+}
+
+.testimonial-card {
+    padding: 50px;
+    text-align: center;
+}
+
+.testimonial-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 3px solid var(--rose-gold);
+}
+
+.testimonial-text {
+    font-style: italic;
+    margin-bottom: 20px;
+    color: #444;
+    font-size: 1.1rem;
+}
+
+.testimonial-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+}
+
+.testimonial-title {
+    font-size: 0.9rem;
+    color: var(--rose-gold);
+}
+
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--blush-pink);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.dot.active,
+.dot:hover {
+    background: var(--rose-gold);
+    transform: scale(1.3);
+}
+
+/* Newsletter */
+.newsletter {
+    padding: 120px 5%;
+    background: linear-gradient(135deg, var(--rose-gold), var(--blush-pink), var(--soft-peach));
+    position: relative;
+    overflow: hidden;
+}
+
+.newsletter-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.newsletter-content h2 {
+    font-size: 3rem;
+    color: var(--dark-ink);
+    margin-bottom: 20px;
+}
+
+.newsletter-content p {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.newsletter-form input {
+    padding: 18px 30px;
+    border: 2px solid var(--pure-white);
+    border-radius: 50px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    width: 350px;
+    background: rgba(255, 255, 255, 0.8);
+    outline: none;
+    transition: var(--transition);
+}
+
+.newsletter-form input:focus {
+    box-shadow: 0 0 0 3px var(--rose-gold);
+}
+
+/* Instagram Gallery */
+.instagram-gallery {
+    padding: 100px 5%;
+    background: var(--pure-white);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    aspect-ratio: 1/1;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+.gallery-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(232, 160, 191, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+
+.gallery-overlay span {
+    color: var(--pure-white);
+    font-size: 2rem;
+}
+
+/* Footer */
+.footer {
+    background: var(--dark-ink);
+    color: var(--pure-white);
+    padding: 80px 5% 30px;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: 60px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.footer-brand h3 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    color: var(--pure-white);
+}
+
+.footer-brand p {
+    color: #888;
+}
+
+.footer-links {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+.link-group h4 {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: var(--rose-gold);
+}
+
+.link-group ul {
+    list-style: none;
+}
+
+.link-group li {
+    margin-bottom: 10px;
+}
+
+.link-group a {
+    color: #aaa;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.link-group a:hover {
+    color: var(--rose-gold);
+    padding-left: 5px;
+}
+
+.footer-social {
+    display: flex;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.footer-social a {
+    color: #aaa;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.footer-social a:hover {
+    color: var(--rose-gold);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 40px;
+    margin-top: 40px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .hero-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .brand-container {
+        grid-template-columns: 1fr;
+    }
+
+    .masonry-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-links {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    h1 { font-size: 3rem; }
+    h2 { font-size: 2.2rem; }
+
+    .hero-headline {
+        font-size: 3.5rem;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 80px;
+        right: -100%;
+        flex-direction: column;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        width: 70%;
+        text-align: center;
+        transition: 0.5s;
+        padding: 40px 0;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        border-radius: 20px;
+    }
+
+    .nav-menu.active {
+        right: 5%;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .brand-stats {
+        justify-content: center;
+    }
+
+    .newsletter-form {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .newsletter-form input {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .masonry-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .masonry-item:nth-child(2),
+    .masonry-item:nth-child(5) {
+        grid-row: span 1;
+    }
+
+    .footer-links {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* AOS Animation Styles */
+[data-aos] {
+    opacity: 0;
+    transition-property: transform, opacity;
+}
+
+[data-aos].aos-animate {
+    opacity: 1;
+}
+
+[data-aos="fade-up"] {
+    transform: translateY(30px);
+}
+
+[data-aos="fade-up"].aos-animate {
+    transform: translateY(0);
+}
+
+[data-aos="fade-left"] {
+    transform: translateX(30px);
+}
+
+[data-aos="fade-left"].aos-animate {
+    transform: translateX(0);
+}
+
+[data-aos="fade-right"] {
+    transform: translateX(-30px);
+}
+
+[data-aos="fade-right"].aos-animate {
+    transform: translateX(0);
+}
+
+[data-aos="zoom-in"] {
+    transform: scale(0.9);
+}
+
+[data-aos="zoom-in"].aos-animate {
+    transform: scale(1);
+}
+
+/* Smooth Transitions */
+* {
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Utility Classes */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 5%;
+} 
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader">
+            <div class="loader-inner"></div>
+        </div>
+        <p class="loading-text">LUXE</p>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="customCursor"></div>
+    <div class="cursor-follower" id="cursorFollower"></div>
+
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress-container">
+        <div class="scroll-progress" id="scrollProgress"></div>
+    </div>
+
+    <!-- Floating Particles -->
+    <div class="particles-container" id="particlesContainer"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="#">LUXE</a>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#featured">Collections</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-icons">
+                <a href="#" class="cart-icon" aria-label="Shopping Bag">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M16 16h2a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"></path><path d="M3 10h18"></path></svg>
+                    <span class="cart-count">0</span>
+                </a>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-background">
+            <div class="floating-shape shape-1"></div>
+            <div class="floating-shape shape-2"></div>
+            <div class="floating-shape shape-3"></div>
+        </div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-headline" data-aos="fade-up">Redefining Modern Luxury</h1>
+                <p class="hero-description" data-aos="fade-up" data-aos-delay="200">
+                    Experience the pinnacle of craftsmanship where timeless elegance meets contemporary design. Each piece tells a story of sophistication and uncompromising quality.
+                </p>
+                <div class="hero-buttons" data-aos="fade-up" data-aos-delay="400">
+                    <a href="#featured" class="btn btn-primary">Shop Collection</a>
+                    <a href="#lookbook" class="btn btn-secondary">Watch Lookbook</a>
+                </div>
+            </div>
+            <div class="hero-image" data-aos="fade-left" data-aos-delay="600">
+                <div class="model-image-container">
+                    <img src="https://picsum.photos/seed/model/800/1000" alt="Fashion Model in Luxury Attire" class="model-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Collection -->
+    <section class="featured-collection" id="featured">
+        <div class="section-header" data-aos="fade-up">
+            <h2>Curated Selection</h2>
+            <p>Handpicked pieces embodying modern femininity and refined elegance</p>
+        </div>
+        <div class="products-grid">
+            <div class="product-card" data-aos="zoom-in" data-aos-delay="100">
+                <div class="product-image-container">
+                    <img src="https://picsum.photos/seed/p1/600/800" alt="Silk Evening Gown" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3>Silk Evening Gown</h3>
+                    <p class="price">$2,890</p>
+                </div>
+            </div>
+            <div class="product-card" data-aos="zoom-in" data-aos-delay="200">
+                <div class="product-image-container">
+                    <img src="https://picsum.photos/seed/p2/600/800" alt="Cashmere Blazer" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3>Cashmere Blazer</h3>
+                    <p class="price">$1,750</p>
+                </div>
+            </div>
+            <div class="product-card" data-aos="zoom-in" data-aos-delay="300">
+                <div class="product-image-container">
+                    <img src="https://picsum.photos/seed/p3/600/800" alt="Rose Gold Dress" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3>Rose Gold Midi Dress</h3>
+                    <p class="price">$1,420</p>
+                </div>
+            </div>
+            <div class="product-card" data-aos="zoom-in" data-aos-delay="400">
+                <div class="product-image-container">
+                    <img src="https://picsum.photos/seed/p4/600/800" alt="Lace Ensemble" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3>Handcrafted Lace Set</h3>
+                    <p class="price">$3,150</p>
+                </div>
+            </div>
+            <div class="product-card" data-aos="zoom-in" data-aos-delay="500">
+                <div class="product-image-container">
+                    <img src="https://picsum.photos/seed/p5/600/800" alt="Velvet Blouse" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3>Velvet Silk Blouse</h3>
+                    <p class="price">$890</p>
+                </div>
+            </div>
+            <div class="product-card" data-aos="zoom-in" data-aos-delay="600">
+                <div class="product-image-container">
+                    <img src="https://picsum.photos/seed/p6/600/800" alt="Designer Skirt" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3>Tailored Midi Skirt</h3>
+                    <p class="price">$1,280</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Story Section -->
+    <section class="brand-story" id="about">
+        <div class="brand-container">
+            <div class="brand-image" data-aos="fade-right">
+                <img src="https://picsum.photos/seed/brand/800/1000" alt="Craftsmanship atelier">
+            </div>
+            <div class="brand-content" data-aos="fade-left">
+                <h2>The Art of LUXE</h2>
+                <p>For over a decade, we have been crafting exceptional pieces that transcend trends and celebrate the artistry of fashion. Our atelier combines traditional techniques with contemporary vision to create garments that embody modern luxury.</p>
+                <p>Every stitch, every fold, every carefully considered detail represents our unwavering commitment to excellence. We believe in creating not just clothing, but heirlooms that will be treasured for generations.</p>
+                <div class="brand-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="10">0</span>
+                        <span class="stat-plus">+</span>
+                        <span class="stat-label">Years Experience</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="5000">0</span>
+                        <span class="stat-plus">+</span>
+                        <span class="stat-label">Customers</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Worldwide Shipping</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fashion Lookbook -->
+    <section class="lookbook" id="lookbook">
+        <div class="section-header" data-aos="fade-up">
+            <h2>Fashion Lookbook</h2>
+            <p>Discover our latest editorial collection</p>
+        </div>
+        <div class="masonry-grid">
+            <div class="masonry-item" data-aos="zoom-in" data-aos-delay="100">
+                <img src="https://picsum.photos/seed/l1/400/500" alt="Lookbook 1">
+                <div class="masonry-overlay">
+                    <span>Editorial Series I</span>
+                </div>
+            </div>
+            <div class="masonry-item" data-aos="zoom-in" data-aos-delay="200">
+                <img src="https://picsum.photos/seed/l2/400/600" alt="Lookbook 2">
+                <div class="masonry-overlay">
+                    <span>Editorial Series II</span>
+                </div>
+            </div>
+            <div class="masonry-item" data-aos="zoom-in" data-aos-delay="300">
+                <img src="https://picsum.photos/seed/l3/400/550" alt="Lookbook 3">
+                <div class="masonry-overlay">
+                    <span>Editorial Series III</span>
+                </div>
+            </div>
+            <div class="masonry-item" data-aos="zoom-in" data-aos-delay="400">
+                <img src="https://picsum.photos/seed/l4/400/650" alt="Lookbook 4">
+                <div class="masonry-overlay">
+                    <span>Editorial Series IV</span>
+                </div>
+            </div>
+            <div class="masonry-item" data-aos="zoom-in" data-aos-delay="500">
+                <img src="https://picsum.photos/seed/l5/400/500" alt="Lookbook 5">
+                <div class="masonry-overlay">
+                    <span>Editorial Series V</span>
+                </div>
+            </div>
+            <div class="masonry-item" data-aos="zoom-in" data-aos-delay="600">
+                <img src="https://picsum.photos/seed/l6/400/600" alt="Lookbook 6">
+                <div class="masonry-overlay">
+                    <span>Editorial Series VI</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Luxury Experience Section -->
+    <section class="luxury-experience" id="experience">
+        <div class="section-header" data-aos="fade-up">
+            <h2>The LUXE Experience</h2>
+            <p>Where craftsmanship meets consciousness</p>
+        </div>
+        <div class="experience-grid">
+            <div class="experience-card glass-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="card-icon">✧</div>
+                <h3>Premium Materials</h3>
+                <p>Sourced from the finest mills across Europe, each fabric tells a story of heritage and excellence.</p>
+            </div>
+            <div class="experience-card glass-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="card-icon">♡</div>
+                <h3>Handcrafted Designs</h3>
+                <p>Every piece is meticulously hand-finished by our master artisans with decades of expertise.</p>
+            </div>
+            <div class="experience-card glass-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="card-icon">✈</div>
+                <h3>Worldwide Delivery</h3>
+                <p>Complimentary white-glove delivery service to over 50 countries worldwide.</p>
+            </div>
+            <div class="experience-card glass-card" data-aos="fade-up" data-aos-delay="400">
+                <div class="card-icon">◇</div>
+                <h3>Sustainable Fashion</h3>
+                <p>Eco-conscious practices ensuring beauty today doesn't compromise tomorrow.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+        <div class="section-header" data-aos="fade-up">
+            <h2>Client Voices</h2>
+            <p>What our distinguished clientele says about us</p>
+        </div>
+        <div class="testimonial-carousel" id="testimonialCarousel">
+            <div class="testimonial-track">
+                <div class="testimonial-slide">
+                    <div class="testimonial-card glass-card">
+                        <img src="https://picsum.photos/seed/c1/100/100" alt="Customer" class="testimonial-photo">
+                        <p class="testimonial-text">"LUXE transformed my wardrobe completely. The attention to detail is unparalleled, and each piece makes me feel like royalty."</p>
+                        <h4 class="testimonial-name">Sophia Laurent</h4>
+                        <span class="testimonial-title">Fashion Editor, Paris</span>
+                    </div>
+                </div>
+                <div class="testimonial-slide">
+                    <div class="testimonial-card glass-card">
+                        <img src="https://picsum.photos/seed/c2/100/100" alt="Customer" class="testimonial-photo">
+                        <p class="testimonial-text">"The quality speaks for itself. I've never owned garments that fit so perfectly and feel so luxurious against the skin."</p>
+                        <h4 class="testimonial-name">Isabella Moreau</h4>
+                        <span class="testimonial-title">Art Director, Milan</span>
+                    </div>
+                </div>
+                <div class="testimonial-slide">
+                    <div class="testimonial-card glass-card">
+                        <img src="https://picsum.photos/seed/c3/100/100" alt="Customer" class="testimonial-photo">
+                        <p class="testimonial-text">"From the packaging to the garment itself, everything screams luxury. LUXE has redefined what premium fashion means to me."</p>
+                        <h4 class="testimonial-name">Amélie Dubois</h4>
+                        <span class="testimonial-title">CEO, London</span>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-dots" id="carouselDots">
+                <span class="dot active" data-slide="0"></span>
+                <span class="dot" data-slide="1"></span>
+                <span class="dot" data-slide="2"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter" id="newsletter">
+        <div class="newsletter-container">
+            <div class="newsletter-content" data-aos="fade-up">
+                <h2>Join Our Exclusive Circle</h2>
+                <p>Be the first to discover new collections, receive exclusive previews, and enjoy privileged access to private events.</p>
+                <form class="newsletter-form" id="newsletterForm">
+                    <input type="email" placeholder="Enter your email address" required>
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instagram Gallery -->
+    <section class="instagram-gallery" id="instagram">
+        <div class="section-header" data-aos="fade-up">
+            <h2>Follow Our Journey</h2>
+            <p>@luxe.fashion</p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100">
+                <img src="https://picsum.photos/seed/i1/300/300" alt="Instagram 1">
+                <div class="gallery-overlay">
+                    <span>✧</span>
+                </div>
+            </div>
+            <div class="gallery-item" data-aos="zoom-in" data-aos-delay="150">
+                <img src="https://picsum.photos/seed/i2/300/300" alt="Instagram 2">
+                <div class="gallery-overlay">
+                    <span>✧</span>
+                </div>
+            </div>
+            <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200">
+                <img src="https://picsum.photos/seed/i3/300/300" alt="Instagram 3">
+                <div class="gallery-overlay">
+                    <span>✧</span>
+                </div>
+            </div>
+            <div class="gallery-item" data-aos="zoom-in" data-aos-delay="250">
+                <img src="https://picsum.photos/seed/i4/300/300" alt="Instagram 4">
+                <div class="gallery-overlay">
+                    <span>✧</span>
+                </div>
+            </div>
+            <div class="gallery-item" data-aos="zoom-in" data-aos-delay="300">
+                <img src="https://picsum.photos/seed/i5/300/300" alt="Instagram 5">
+                <div class="gallery-overlay">
+                    <span>✧</span>
+                </div>
+            </div>
+            <div class="gallery-item" data-aos="zoom-in" data-aos-delay="350">
+                <img src="https://picsum.photos/seed/i6/300/300" alt="Instagram 6">
+                <div class="gallery-overlay">
+                    <span>✧</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h3>LUXE</h3>
+                <p>Redefining Modern Luxury Since 2016</p>
+            </div>
+            <div class="footer-links">
+                <div class="link-group">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#hero">Home</a></li>
+                        <li><a href="#featured">Collections</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="link-group">
+                    <h4>Customer Care</h4>
+                    <ul>
+                        <li><a href="#">Shipping & Returns</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="link-group">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>New York, USA</li>
+                        <li>+1 (555) 123-4567</li>
+                        <li>contact@luxefashion.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-social">
+                <a href="#" aria-label="Instagram">Instagram</a>
+                <a href="#" aria-label="Pinterest">Pinterest</a>
+                <a href="#" aria-label="Facebook">Facebook</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 LUXE Fashion. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
